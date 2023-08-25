@@ -1,0 +1,51 @@
+.assignment-form {
+    display: flex;
+    flex-direction: column;
+    margin-left: 25px;
+    gap: 10px;
+  }
+  
+  .assignment-form label {
+    font-weight: bold;
+  }
+  
+  .assignment-form textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    height: 250px;
+
+  }
+  .assignment-form input,
+  .assignment-form select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .assignment-form input[type="file"] {
+    padding: 100;
+    border: none;
+  }
+  
+  .assignment-form input[type="datetime-local"] {
+    padding: 12px;
+  }
+  
+  .assignment-form button[type="submit"] {
+    width: auto;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .assignment-form button[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+  
