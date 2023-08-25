@@ -14,6 +14,8 @@ import { action as semesterDeleteAction } from './routes/semesterDelete';
 import SemesterEdit, { action as semesterEditAction } from './routes/semesterEdit';
 import SemestersIndex from './routes/semestersIndex';
 import CreateAssignmentPage from './routes/createAssignment';
+import Assignments from './routes/assignments';
+import AssignmentDetails from './routes/assignmentsDetails'
 
 
 
@@ -55,6 +57,19 @@ const router = createBrowserRouter([
     // loader: semestersRootLoader,
     // action: semestersRootAction,
   },
+  {
+    path: "/assignments",
+    element: <Assignments />,
+    errorElement: <ErrorPage/>,
+    // loader: semestersRootLoader,
+    // action: semestersRootAction,
+  },
+  // {
+  //     <Switch>
+  //       <Route path="/assignments" exact component={Assignments} />
+  //       <Route path="/assignment/:assignmentId" component={AssignmentDetails} />
+  //     </Switch>
+  // },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
