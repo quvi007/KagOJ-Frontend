@@ -1,0 +1,30 @@
+.create-assignment-container {
+    max-width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .create-assignment-container h1 {
+    text-align: center;
+    margin-left: 25px;
+  }
+  
+  .create-assignment-button {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .create-assignment-button:hover {
+    background-color: #0056b3;
+  }
+  

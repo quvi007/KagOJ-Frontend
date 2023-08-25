@@ -1,18 +1,21 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
 import "./index.css";
 
-import SemestersRoot, { loader as semestersRootLoader, action as semestersRootAction } from './routes/semestersRoot';
 import ErrorPage from './error-page';
+import SemestersRoot, { action as semestersRootAction, loader as semestersRootLoader } from './routes/semestersRoot';
 
 import Semester, { loader as semesterLoader, } from './routes/semester';
-import SemesterEdit, { action as semesterEditAction } from './routes/semesterEdit';
 import { action as semesterDeleteAction } from './routes/semesterDelete';
+import SemesterEdit, { action as semesterEditAction } from './routes/semesterEdit';
 import SemestersIndex from './routes/semestersIndex';
+import CreateAssignmentPage from './routes/createAssignment';
+
+
 
 const router = createBrowserRouter([
   {
@@ -42,6 +45,15 @@ const router = createBrowserRouter([
         action: semesterDeleteAction,
       }
     ],
+  },
+
+  //dummy - rakib
+  {
+    path: "/create",
+    element: <CreateAssignmentPage />,
+    errorElement: <ErrorPage/>,
+    // loader: semestersRootLoader,
+    // action: semestersRootAction,
   },
 ]);
 
