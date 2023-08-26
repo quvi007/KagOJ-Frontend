@@ -22,6 +22,15 @@ import Course, { loader as courseLoader } from './routes/course';
 import CourseEdit, { loader as courseEditLoader, action as courseEditAction } from './routes/courseEdit';
 import { action as courseDeleteAction } from './routes/courseDelete';
 
+import Assignments from './routes/assignments/assignments';
+import CreateAssignment from './routes/assignments/createAssignment';
+import SubmitAssignment from './routes/assignments/submitAssignmentPage';
+
+// import AssignmentDetails from './routes/assignments/assignmentsDetails';
+
+
+
+
 const router = createBrowserRouter([
   {
     path: "/semesters",
@@ -88,6 +97,32 @@ const router = createBrowserRouter([
         action: courseDeleteAction
       },
     ]
+  },
+  //dummy
+  {
+    path: "/assignments",
+    element: <Assignments />,
+    errorElement: <ErrorPage/>,
+    loader: semestersRootLoader,
+    // children: [
+    //   {
+    //     path: "assignments/:assignmentId",
+    //     element: <AssignmentDetails/>,
+    //     action: courseCreateAction
+    //   },
+    // ]
+  },
+  {
+    path: "/new-assignment",
+    element: <CreateAssignment />,
+    errorElement: <ErrorPage/>,
+    loader: semestersRootLoader,
+  },
+  {
+    path: "/submit-ass",
+    element: <SubmitAssignment />,
+    errorElement: <ErrorPage/>,
+    loader: semestersRootLoader,
   },
 ]);
 

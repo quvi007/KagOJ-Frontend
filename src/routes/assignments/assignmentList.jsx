@@ -8,7 +8,7 @@ function AssignmentList({ assignments }) {
         <li key={assignment.id} className="assignment-item">
           <h3>{assignment.title}</h3>
           <p>Deadline: {new Date(assignment.deadline).toLocaleString()}</p>
-          <Link to={`/assignment/${assignment.id}`}>See Details</Link>
+          <Link to={`/assignments/${assignment.id}`}>See Details</Link>
         </li>
       ))}
     </ul>
