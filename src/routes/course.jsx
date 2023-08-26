@@ -1,5 +1,6 @@
 import { Form, Outlet, useLoaderData } from "react-router-dom";
 import { getCourse } from "../courses";
+import CourseNavBar from "../components/courseNavBar";
 
 export async function loader({ params }) {
     const course = await getCourse(params.courseId);
@@ -11,6 +12,7 @@ export default function Course() {
 
   return (
     <>
+    <CourseNavBar/>
     <div id="semester">
       <div>
         <img

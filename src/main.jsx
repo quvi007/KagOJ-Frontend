@@ -6,8 +6,6 @@ import {
 } from "react-router-dom";
 import "./index.css";
 import './scss/styles.scss';
-import * as bootstrap from 'bootstrap';
-
 
 import SemestersRoot, { loader as semestersRootLoader } from './routes/semestersRoot';
 import ErrorPage from './error-page';
@@ -22,6 +20,7 @@ import CourseCreate, { action as courseCreateAction } from './routes/courseCreat
 import CoursesGrid from './components/coursesGrid';
 import Course, { loader as courseLoader } from './routes/course';
 import CourseEdit, { loader as courseEditLoader, action as courseEditAction } from './routes/courseEdit';
+import { action as courseDeleteAction } from './routes/courseDelete';
 
 const router = createBrowserRouter([
   {
@@ -86,7 +85,7 @@ const router = createBrowserRouter([
       },
       {
         path: ":courseId/delete",
-        // action: courseDeleteAction
+        action: courseDeleteAction
       },
     ]
   },
