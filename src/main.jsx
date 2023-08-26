@@ -11,7 +11,6 @@ import * as bootstrap from 'bootstrap';
 
 import SemestersRoot, { loader as semestersRootLoader } from './routes/semestersRoot';
 import ErrorPage from './error-page';
-import SemestersRoot, { action as semestersRootAction, loader as semestersRootLoader } from './routes/semestersRoot';
 
 import Semester, { loader as semesterLoader, } from './routes/semester';
 import SemesterEdit, { action as semesterEditAction, loader as semesterEditLoader } from './routes/semesterEdit';
