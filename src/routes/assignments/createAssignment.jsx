@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import AssignmentForm from './AssignmentForm';
-import '../css/createAssignment.css'; 
+import AssignmentForm from './assignmentForm';
+import '../../css/createAssignment.css'; 
 
-function CreateAssignmentPage() {
+function CreateAssignment() {
   const [assignmentData, setAssignmentData] = useState({
     title: '',
     details: '',
@@ -29,4 +29,4 @@ function CreateAssignmentPage() {
   );
 }
 
-export default CreateAssignmentPage;
+export default CreateAssignment;

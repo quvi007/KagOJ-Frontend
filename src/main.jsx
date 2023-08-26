@@ -115,6 +115,32 @@ const router = createBrowserRouter([
       },
     ]
   },
+  //dummy
+  {
+    path: "/assignments",
+    element: <Assignments />,
+    errorElement: <ErrorPage/>,
+    loader: semestersRootLoader,
+    // children: [
+    //   {
+    //     path: "assignments/:assignmentId",
+    //     element: <AssignmentDetails/>,
+    //     action: courseCreateAction
+    //   },
+    // ]
+  },
+  {
+    path: "/new-assignment",
+    element: <CreateAssignment />,
+    errorElement: <ErrorPage/>,
+    loader: semestersRootLoader,
+  },
+  {
+    path: "/submit-ass",
+    element: <SubmitAssignment />,
+    errorElement: <ErrorPage/>,
+    loader: semestersRootLoader,
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
