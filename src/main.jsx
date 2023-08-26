@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import {
   createBrowserRouter,
+  Navigate,
   RouterProvider,
 } from "react-router-dom";
 import "./index.css";
@@ -21,6 +22,10 @@ import CoursesGrid from './components/coursesGrid';
 import Course, { loader as courseLoader } from './routes/course';
 import CourseEdit, { loader as courseEditLoader, action as courseEditAction } from './routes/courseEdit';
 import { action as courseDeleteAction } from './routes/courseDelete';
+
+import CoursePractice from './components/coursePractice';
+import CourseAssignments from './components/courseAssignments';
+import CourseMembers from './components/courseMembers';
 
 const router = createBrowserRouter([
   {
@@ -75,13 +80,34 @@ const router = createBrowserRouter([
       {
         path: ":courseId",
         element: <Course/>,
-        loader: courseLoader
-      },
-      {
-        path: ":courseId/edit",
-        element: <CourseEdit/>,
-        loader: courseEditLoader,
-        action: courseEditAction
+        loader: courseLoader,
+        children: [
+          {
+            index: true,
+            element: <Navigate to={"practice"} replace/>
+          },
+          {
+            path: "practice",
+            element: <CoursePractice/>,
+            loader: courseLoader
+          },
+          {
+            path: "assignments",
+            element: <CourseAssignments/>,
+            loader: courseLoader
+          },
+          {
+            path: "members",
+            element: <CourseMembers/>,
+            loader: courseLoader
+          },
+          {
+            path: "edit",
+            element: <CourseEdit/>,
+            loader: courseEditLoader,
+            action: courseEditAction
+          },
+        ]
       },
       {
         path: ":courseId/delete",

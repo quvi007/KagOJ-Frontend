@@ -1,13 +1,16 @@
 import { Outlet, useLoaderData, NavLink, useNavigation, useNavigate } from "react-router-dom";
 import { createCourse, getCourses } from "../courses";
+import { getSemester } from "../semesters";
 
 export async function loader( {params} ) {
-    const courses = await getCourses(params.semesterId);
-    return { courses };
+    const semesterId = params.semesterId;
+    const courses = await getCourses(semesterId);
+    const semesterName = (await getSemester(semesterId)).name;
+    return { courses, semesterId, semesterName };
 }
 
 export default function CoursesRoot() {
-    const { courses } = useLoaderData();
+    const { courses, semesterId, semesterName } = useLoaderData();
     const navigation = useNavigation();
     const navigate = useNavigate();
 

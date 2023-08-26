@@ -25,9 +25,9 @@ export default function CoursesGrid() {
                 (
                     <>
                         {courses.map((course) => (
-                            <div className="col mt-3">
+                            <div className="col mt-3" key={course.id}>
                                 <div className="card">
-                                    <img src="../assets/spl.jpg" class="card-img-top" alt="..."/>
+                                    <img src="/spl.jpg" className="card-img-top" alt="..."/>
                                     <div className="card-body">
                                         <h5 className="card-title">{course.name}</h5>
                                         <p className="card-text">{course.description}</p>

@@ -11,9 +11,9 @@ export async function action({ request, params }) {
 
 export default function CourseCreate() {
     return (
-    <div className="mt-4">
-        <h2>Create New Course</h2>
-        <CourseEditComponent course={{}}/>
-    </div>
+        <div>
+            <h2 className="mb-4">Create New Course</h2>
+            <CourseEditComponent course={{}}/>
+        </div>
     );
 }
