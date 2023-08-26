@@ -1,38 +1,38 @@
 import { Form, Outlet, useLoaderData } from "react-router-dom";
-import { getSemester } from "../semesters";
+import { getCourse } from "../courses";
 
 export async function loader({ params }) {
-    const semester = await getSemester(params.semesterId);
-    return { semester };
+    const course = await getCourse(params.courseId);
+    return { course };
 }
 
-export default function Semester() {
-  const { semester } = useLoaderData();
+export default function Course() {
+  const { course } = useLoaderData();
 
   return (
     <>
     <div id="semester">
       <div>
         <img
-          key={semester.avatar}
-          src={semester.avatar || null}
+          key={course.avatar}
+          src={course.avatar || null}
         />
       </div>
       <div>
         <h1>
-          {semester.name ? (
+          {course.name ? (
             <>
-              {semester.name}
+              {course.name}
             </>
           ) : (
             <i>No Name</i>
           )}{" "}
-          <Favorite semester={semester} />
+          <Favorite course={course} />
         </h1>
 
         <p></p>
         
-        {semester.description && <p>{semester.description}</p>}
+        {course.description && <p>{course.description}</p>}
 
         <div>
           <Form action="edit">
@@ -44,7 +44,7 @@ export default function Semester() {
             onSubmit={(event) => {
               if (
                 !confirm(
-                  "Please confirm you want to delete this semester."
+                  "Please confirm you want to delete this course."
                 )
               ) {
                 event.preventDefault();
@@ -65,9 +65,9 @@ export default function Semester() {
   );
 }
 
-function Favorite({ semester }) {
+function Favorite({ course }) {
   // yes, this is a `let` for later
-  let favorite = semester.favorite;
+  let favorite = course.favorite;
   return (
     <Form method="post">
       <button

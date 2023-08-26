@@ -1,25 +1,25 @@
 import { Outlet, useLoaderData, NavLink, useNavigation, useNavigate } from "react-router-dom";
-import { getSemesters } from "../semesters";
+import { createCourse, getCourses } from "../courses";
 
-export async function loader() {
-  const semesters = await getSemesters();
-  return { semesters };
+export async function loader( {params} ) {
+    const courses = await getCourses(params.semesterId);
+    return { courses };
 }
 
-export default function SemestersRoot() {
-    const { semesters } = useLoaderData();
+export default function CoursesRoot() {
+    const { courses } = useLoaderData();
     const navigation = useNavigation();
     const navigate = useNavigate();
 
     return (
       <>
         <div id="sidebar">
-          <h1>Semesters</h1>
+          <h1>Courses</h1>
           <div >
             <form id="search-form" role="search">
               <input
                 id="q"
-                aria-label="Search semesters"
+                aria-label="Search courses"
                 placeholder="Search"
                 type="search"
                 name="q"
@@ -34,9 +34,6 @@ export default function SemestersRoot() {
                 aria-live="polite"
               ></div>
             </form>
-            {/* <Form method="post">
-              <button type="submit" className="btn btn-outline-primary">New</button>
-            </Form> */}
             <button type="button" className="btn btn-outline-primary" onClick={
               () => {
                 navigate("new");
@@ -44,12 +41,12 @@ export default function SemestersRoot() {
             }>New</button>
           </div>
           <nav>
-            {semesters.length ? (
+            {courses.length ? (
               <ul>
-                {semesters.map((semester) => (
-                  <li key={semester.id}>
+                {courses.map((course) => (
+                  <li key={course.id}>
                     <NavLink
-                      to={`${semester.id}`}
+                      to={`${course.id}`}
                       className={({ isActive, isPending }) =>
                         isActive
                           ? "active"
@@ -58,21 +55,21 @@ export default function SemestersRoot() {
                           : ""
                       }
                     >
-                      {semester.name ? (
+                      {course.name ? (
                         <>
-                          {semester.name}
+                          {course.name}
                         </>
                       ) : (
                         <i>No Name</i>
                       )}{" "}
-                      {semester.favorite && <span>★</span>}
+                      {course.favorite && <span>★</span>}
                     </NavLink>
                   </li>
                 ))}
               </ul>
             ) : (
               <p>
-                <i>No semesters</i>
+                <i>No courses</i>
               </p>
             )}
           </nav>
