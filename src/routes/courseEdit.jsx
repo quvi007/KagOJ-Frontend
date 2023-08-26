@@ -1,4 +1,4 @@
-import { useLoaderData, redirect } from "react-router-dom";
+import { useLoaderData, redirect, useNavigate } from "react-router-dom";
 import { updateCourse, getCourse } from "../courses";
 import CourseEditComponent from "../components/courseEditComponent";
 import { getSemester } from "../semesters";

@@ -17,7 +17,7 @@ import { action as semesterDeleteAction } from './routes/semesterDelete';
 import CoursesRoot, { loader as coursesRootLoader } from './routes/coursesRoot';
 import SemestersIndex from './routes/semestersIndex';
 import SemesterCreate, { action as semesterCreateAction } from './routes/semesterCreate';
-import CourseCreate, { action as courseCreateAction } from './routes/courseCreate';
+import CourseCreate, { action as courseCreateAction, loader as courseCreateLoader } from './routes/courseCreate';
 import CoursesGrid from './components/coursesGrid';
 import Course, { loader as courseLoader } from './routes/course';
 import CourseEdit, { loader as courseEditLoader, action as courseEditAction } from './routes/courseEdit';
@@ -75,7 +75,8 @@ const router = createBrowserRouter([
       {
         path: "new",
         element: <CourseCreate/>,
-        action: courseCreateAction
+        action: courseCreateAction,
+        loader: courseCreateLoader,
       },
       {
         path: ":courseId",
