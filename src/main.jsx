@@ -100,7 +100,7 @@ const router = createBrowserRouter([
           },
           {
             path: "assignments",
-            element: <Assignments/>,
+            element: <CourseAssignments/>,
             loader: courseLoader
           },
           {
