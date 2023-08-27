@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import AssignmentForm from './assignmentForm';
+import CreateAssignmentForm from './createAssignmentForm';
 import '../../css/createAssignment.css'; 
 
 function CreateAssignment() {
@@ -20,7 +20,7 @@ function CreateAssignment() {
   return (
     <div className="create-assignment-container">
       <h1>Create Assignment</h1>
-      <AssignmentForm
+      <CreateAssignmentForm
         assignmentData={assignmentData}
         setAssignmentData={setAssignmentData}
         onSubmit={handleAssignmentSubmit}
