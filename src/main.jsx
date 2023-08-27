@@ -28,8 +28,6 @@ import CourseAssignments from './components/courseAssignments';
 import CourseMembers from './components/courseMembers';
 import Root, { loader as rootLoader} from './routes/root';
 
-import CreateAssignment from './routes/assignments/createAssignment';
-
 const router = createBrowserRouter([
   {
     path: "/",
@@ -102,7 +100,7 @@ const router = createBrowserRouter([
           },
           {
             path: "assignments",
-            element: <CourseAssignments/>,
+            element: <Assignments/>,
             loader: courseLoader
           },
           {
@@ -138,12 +136,12 @@ const router = createBrowserRouter([
   //   //   },
   //   // ]
   // },
-  {
-    path: "/new-assignment",
-    element: <CreateAssignment />,
-    errorElement: <ErrorPage/>,
-    loader: semestersRootLoader,
-  },
+  // {
+  //   path: "/new-assignment",
+  //   element: <CreateAssignment />,
+  //   errorElement: <ErrorPage/>,
+  //   loader: semestersRootLoader,
+  // },
   // {
   //   path: "/submit-ass",
   //   element: <SubmitAssignment />,
