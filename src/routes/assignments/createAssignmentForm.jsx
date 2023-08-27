@@ -2,7 +2,7 @@ import React from 'react';
 import '../../css/assignmentForm.css'; 
 
 
-function AssignmentForm({ assignmentData, setAssignmentData, onSubmit }) {
+function CreateAssignmentForm({ assignmentData, setAssignmentData, onSubmit }) {
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setAssignmentData((prevData) => ({
@@ -41,10 +41,10 @@ function AssignmentForm({ assignmentData, setAssignmentData, onSubmit }) {
         />
       </div>
       <div>
-        <label>Attachment (PDF or Image):</label>
+        <label>Attachment:</label>
         <input
           type="file"
-          accept=".pdf, .jpg, .jpeg, .png"
+          accept=".pdf, .jpg, .jpeg, .png, .zip"
           onChange={handleFileChange}
         />
       </div>
@@ -63,4 +63,4 @@ function AssignmentForm({ assignmentData, setAssignmentData, onSubmit }) {
   );
 }
 
-export default AssignmentForm;
+export default CreateAssignmentForm;
