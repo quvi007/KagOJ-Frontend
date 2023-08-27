@@ -26,8 +26,14 @@ import { action as courseDeleteAction } from './routes/courseDelete';
 import CoursePractice from './components/coursePractice';
 import CourseAssignments from './components/courseAssignments';
 import CourseMembers from './components/courseMembers';
+import Root, { loader as rootLoader} from './routes/root';
 
 const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Root/>,
+    loader: rootLoader
+  },
   {
     path: "/semesters",
     element: <SemestersRoot />,
