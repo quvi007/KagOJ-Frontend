@@ -24,7 +24,7 @@ export default function CourseNavBar({course, semester, tabName}) {
                                 isActive
                                   ? "nav-link active"
                                   : "nav-link"
-                            } to={`/semesters/${semester.id}/courses/${course.id}/assignments`}>Assignments</NavLink>
+                            } to={`/semesters/${semester.id}/courses/${course.id}/assignments_list`}>Assignments</NavLink>
                         </li>
                         <li className="nav-item">
                             <NavLink replace className={

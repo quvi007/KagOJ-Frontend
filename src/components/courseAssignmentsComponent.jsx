@@ -15,42 +15,12 @@
 import React, { useState } from 'react';
 import '../css/assignments.css';
 import AssignmentList from './assignmentList';
-import { useLoaderData } from "react-router-dom";
-import CourseNavBar from './courseNavBar';
+import { useNavigate } from 'react-router-dom';
 
-
-function Assignments() {
-  const [assignments, setAssignments] = useState([
-    {
-      id: 1,
-      title: 'Assignment 1',
-      deadline: '2023-09-01T12:00',
-    },
-    {
-      id: 2,
-      title: 'Assignment 2',
-      deadline: '2026-09-05T15:00',
-    },
-    {
-      id: 3,
-      title: 'Assignment 3',
-      deadline: '2023-09-05T15:00',
-    },
-    {
-      id: 4,
-      title: 'Assignment 4',
-      deadline: '2023-10-05T15:00',
-    },
-    {
-      id: 5,
-      title: 'Assignment 5',
-      deadline: '2024-09-05T15:00',
-    },
-    // Add more assignments here...
-  ]);
+export default function CourseAssignmentsComponent({assignments, course, semester}) {
+  const navigate = useNavigate();
 
   const [sortOrder, setSortOrder] = useState('asc'); // Default sort order
-  const { course, semester } = useLoaderData();
 
   const handleSortByDeadline = () => {
     const sortedAssignments = [...assignments].sort((a, b) =>
@@ -64,22 +34,14 @@ function Assignments() {
 
   return (
     <>
-        <CourseNavBar course={course} semester={semester} tabName="assignments"/>
         <div className="available-assignments-container">
         <h1>Upcoming Assignments</h1>
         <button onClick={handleSortByDeadline}>
             Sort by Deadline ({sortOrder === 'asc' ? 'Asc' : 'Desc'})
         </button>
-        <AssignmentList assignments={assignments} />
+        <AssignmentList assignments={assignments} course={course} semester={semester}/>
         </div>
     </>
     
   );
 }
-
-
-
-
-
-
-export default Assignments;

@@ -1,28 +1,31 @@
 import { Outlet, useLoaderData, NavLink, useNavigation, useNavigate } from "react-router-dom";
-import { getCourses } from "../courses";
+import { getAssignments } from "../assignments";
 import { getSemester } from "../semesters";
+import { getCourse } from "../courses";
 
 export async function loader( {params} ) {
     const semesterId = params.semesterId;
-    const courses = await getCourses(semesterId);
+    const courseId = params.courseId;
+    const assignments = await getAssignments(courseId, semesterId);
     const semesterName = (await getSemester(semesterId)).name;
-    return { courses, semesterId, semesterName };
+    const courseName = (await getCourse(courseId)).name;
+    return { assignments, semesterId, courseId, semesterName, courseName };
 }
 
-export default function CoursesRoot() {
-    const { courses, semesterId, semesterName } = useLoaderData();
+export default function AssignmentsRoot() {
+    const { assignments, semesterId, courseId, semesterName, courseName } = useLoaderData();
     const navigation = useNavigation();
     const navigate = useNavigate();
 
     return (
       <>
         <div id="sidebar">
-          <h1>Courses</h1>
+          <h1>Assignments</h1>
           <div >
             <form id="search-form" role="search">
               <input
                 id="q"
-                aria-label="Search courses"
+                aria-label="Search assignments"
                 placeholder="Search"
                 type="search"
                 name="q"
@@ -44,12 +47,12 @@ export default function CoursesRoot() {
             }>New</button>
           </div>
           <nav>
-            {courses.length ? (
+            {assignments.length ? (
               <ul>
-                {courses.map((course) => (
-                  <li key={course.id}>
+                {assignments.map((assignment) => (
+                  <li key={assignment.id}>
                     <NavLink
-                      to={`${course.id}`}
+                      to={`${assignment.id}`}
                       className={({ isActive, isPending }) =>
                         isActive
                           ? "active"
@@ -58,21 +61,21 @@ export default function CoursesRoot() {
                           : ""
                       }
                     >
-                      {course.name ? (
+                      {assignment.title ? (
                         <>
-                          {course.name}
+                          {assignment.title}
                         </>
                       ) : (
                         <i>No Name</i>
                       )}{" "}
-                      {course.favorite && <span>★</span>}
+                      {assignment.favorite && <span>★</span>}
                     </NavLink>
                   </li>
                 ))}
               </ul>
             ) : (
               <p>
-                <i>No courses</i>
+                <i>No assignments</i>
               </p>
             )}
           </nav>

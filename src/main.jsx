@@ -23,16 +23,20 @@ import Course, { loader as courseLoader } from './routes/course';
 import CourseEdit, { loader as courseEditLoader, action as courseEditAction } from './routes/courseEdit';
 import { action as courseDeleteAction } from './routes/courseDelete';
 
-import CoursePractice from './components/coursePractice';
-import CourseAssignments from './components/courseAssignments';
-import CourseMembers from './components/courseMembers';
-import Root, { loader as rootLoader} from './routes/root';
+import CoursePractice, { loader as coursePracticeLoader } from './routes/coursePractice';
+import CourseMembers, { loader as courseMembersLoader } from './routes/courseMembers';
+import CourseAssignments, { loader as courseAssignmentsLoader } from './routes/courseAssignments';
+import AssignmentsRoot, { loader as assignmentsRootLoader } from './routes/assignmentsRoot';
+import Assignment, { loader as assignmentLoader } from './routes/assignment';
+import AssignmentEdit, { loader as assignmentEditLoader, action as assignmentEditAction } from './routes/assignmentEdit';
+import AssignmentCreate, { loader as assignmentCreateLoader, action as assignmentCreateAction } from './routes/assignmentCreate';
+import { action as assignmentDeleteAction } from './routes/assignmentDelete';
+
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Root/>,
-    loader: rootLoader
+    element: <Navigate to="/semesters"/>
   },
   {
     path: "/semesters",
@@ -96,17 +100,17 @@ const router = createBrowserRouter([
           {
             path: "practice",
             element: <CoursePractice/>,
-            loader: courseLoader
+            loader: coursePracticeLoader,
           },
           {
-            path: "assignments",
+            path: "assignments_list",
             element: <CourseAssignments/>,
-            loader: courseLoader
+            loader: courseAssignmentsLoader,
           },
           {
             path: "members",
             element: <CourseMembers/>,
-            loader: courseLoader
+            loader: courseMembersLoader,
           },
           {
             path: "edit",
@@ -122,32 +126,36 @@ const router = createBrowserRouter([
       },
     ]
   },
-  //dummy
-  // {
-  //   path: "/assignments",
-  //   element: <Assignments />,
-  //   errorElement: <ErrorPage/>,
-  //   loader: semestersRootLoader,
-  //   // children: [
-  //   //   {
-  //   //     path: "assignments/:assignmentId",
-  //   //     element: <AssignmentDetails/>,
-  //   //     action: courseCreateAction
-  //   //   },
-  //   // ]
-  // },
-  // {
-  //   path: "/new-assignment",
-  //   element: <CreateAssignment />,
-  //   errorElement: <ErrorPage/>,
-  //   loader: semestersRootLoader,
-  // },
-  // {
-  //   path: "/submit-ass",
-  //   element: <SubmitAssignment />,
-  //   errorElement: <ErrorPage/>,
-  //   loader: semestersRootLoader,
-  // },
+  {
+    path: "/semesters/:semesterId/courses/:courseId/assignments",
+    element: <AssignmentsRoot/>,
+    loader: assignmentsRootLoader,
+    children: [
+      {
+        path: ":assignmentId",
+        element: <Assignment/>,
+        loader: assignmentLoader,
+        children: [
+          {
+            path: "edit",
+            element: <AssignmentEdit/>,
+            loader: assignmentEditLoader,
+            action: assignmentEditAction
+          }
+        ]
+      },
+      {
+        path: "new",
+        element: <AssignmentCreate/>,
+        action: assignmentCreateAction,
+        loader: assignmentCreateLoader,
+      },
+      {
+        path: ":assignmentId/delete",
+        action: assignmentDeleteAction
+      }
+    ]
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(

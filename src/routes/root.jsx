@@ -1,11 +1,11 @@
 import { useLoaderData } from "react-router-dom";
+import { getAssignments } from "../assignments";
 
 export async function loader() {
-    console.log("Hey there!");
-    return {};
+    const data = getAssignments("4xkeydq", "akirj27");
+    return { data };
 }
 
 export default function Root() {
-    useLoaderData();
-    return <h1>Hello There!</h1>;
+    return <div>Hello</div>;
 }
