@@ -1,126 +1,177 @@
-import { useState } from 'react';
-import '../css/CreateProblem.css'; // Import your custom CSS file
+import React, { useState } from 'react';
+import { Container, Form, Button, Row, Col } from 'react-bootstrap';
 
 const CreateProblem = () => {
-  const [problemTitle, setProblemTitle] = useState('');
-  const [problemBody, setProblemBody] = useState('');
-  const [inputDescription, setInputDescription] = useState('');
-  const [outputDescription, setOutputDescription] = useState('');
-  const [testcases, setTestcases] = useState([
-    { input: '', output: '' },
-    { input: '', output: '' },
-  ]);
+  const [problem, setProblem] = useState({
+    title: '',
+    body: '',
+    inputDescription: '',
+    outputDescription: '',
+    difficulty: '',
+    tags: [],
+    testCases: [{ input: '', output: '' }],
+  });
 
-  const handleTestcaseChange = (index, field, value) => {
-    const updatedTestcases = [...testcases];
-    updatedTestcases[index][field] = value;
-    setTestcases(updatedTestcases);
-  };
-
-  const addTestcase = () => {
-    setTestcases([...testcases, { input: '', output: '' }]);
-  };
-
-  const removeTestcase = (index) => {
-    const updatedTestcases = [...testcases];
-    updatedTestcases.splice(index, 1);
-    setTestcases(updatedTestcases);
-  };
-
-  const handleSubmit = () => {
-    // Perform submission logic here
-    console.log('Submitted data:', {
-      problemTitle,
-      problemBody,
-      inputDescription,
-      outputDescription,
-      testcases,
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setProblem({
+      ...problem,
+      [name]: value,
     });
   };
 
+  const handleTagChange = (tags) => {
+    setProblem({ ...problem, tags });
+  };
+
+  const handleTestCaseChange = (index, field, value) => {
+    const updatedTestCases = [...problem.testCases];
+    updatedTestCases[index][field] = value;
+    setProblem({ ...problem, testCases: updatedTestCases });
+  };
+
+  const addTestCase = () => {
+    setProblem({
+      ...problem,
+      testCases: [...problem.testCases, { input: '', output: '' }],
+    });
+  };
+
+  const removeTestCase = (index) => {
+    const updatedTestCases = [...problem.testCases];
+    updatedTestCases.splice(index, 1);
+    setProblem({ ...problem, testCases: updatedTestCases });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(problem);
+    // Add logic to submit the problem to your backend API.
+  };
+
   return (
-    <div className="create-problem-container">
+    <Container>
       <h1>Create Problem</h1>
-      <div className="input-container">
-        <label htmlFor="problem-title">Problem Title</label>
-        <input
-          type="text"
-          id="problem-title"
-          className="input-field"
-          value={problemTitle}
-          onChange={(e) => setProblemTitle(e.target.value)}
-        />
-      </div>
-      <div className="input-container">
-        <label htmlFor="problem-body">Problem Body</label>
-        <textarea
-          id="problem-body"
-          className="input-field textarea"
-          value={problemBody}
-          onChange={(e) => setProblemBody(e.target.value)}
-        />
-      </div>
-      <div className="input-container">
-        <label htmlFor="input-description">Input Description</label>
-        <textarea
-          id="input-description"
-          className="input-field textarea"
-          value={inputDescription}
-          onChange={(e) => setInputDescription(e.target.value)}
-        />
-      </div>
-      <div className="input-container">
-        <label htmlFor="output-description">Output Description</label>
-        <textarea
-          id="output-description"
-          className="input-field textarea"
-          value={outputDescription}
-          onChange={(e) => setOutputDescription(e.target.value)}
-        />
-      </div>
+      <Form onSubmit={handleSubmit}>
+        <Form.Group controlId="problemTitle">
+          <Form.Label>Problem Title</Form.Label>
+          <Form.Control
+            type="text"
+            name="title"
+            value={problem.title}
+            onChange={handleInputChange}
+            required
+          />
+        </Form.Group>
 
-      <div className="testcases-container">
-        <h2>Testcases</h2>
-        {testcases.map((testcase, index) => (
-          <div key={index} className="testcase">
-            <div className="testcase-header">
-              <span className="testcase-number">Testcase {index + 1}</span>
-              <button
-                className="remove-btn"
-                onClick={() => removeTestcase(index)}
-              >
-                Remove
-              </button>
-            </div>
-            <div className="testcase-input">
-              <label>Input</label>
-              <textarea
-                value={testcase.input}
-                onChange={(e) =>
-                  handleTestcaseChange(index, 'input', e.target.value)
-                }
-              />
-            </div>
-            <div className="testcase-output">
-              <label>Output</label>
-              <textarea
-                value={testcase.output}
-                onChange={(e) =>
-                  handleTestcaseChange(index, 'output', e.target.value)
-                }
-              />
-            </div>
-          </div>
-        ))}
-        <button className="add-testcase-btn" onClick={addTestcase}>
-          Add Testcase
-        </button>
-      </div>
+        <Form.Group controlId="problemBody">
+          <Form.Label>Problem Body</Form.Label>
+          <Form.Control
+            as="textarea"
+            rows={5}
+            name="body"
+            value={problem.body}
+            onChange={handleInputChange}
+            required
+          />
+        </Form.Group>
 
-      <button className="submit-btn" onClick={handleSubmit}>
-        Submit
-      </button>
-    </div>
+        <Form.Group controlId="inputDescription">
+          <Form.Label>Input Description</Form.Label>
+          <Form.Control
+            as="textarea"
+            rows={3}
+            name="inputDescription"
+            value={problem.inputDescription}
+            onChange={handleInputChange}
+            required
+          />
+        </Form.Group>
+
+        <Form.Group controlId="outputDescription">
+          <Form.Label>Output Description</Form.Label>
+          <Form.Control
+            as="textarea"
+            rows={3}
+            name="outputDescription"
+            value={problem.outputDescription}
+            onChange={handleInputChange}
+            required
+          />
+        </Form.Group>
+
+        <Form.Group controlId="problemDifficulty">
+          <Form.Label>Problem Difficulty</Form.Label>
+          <Form.Control
+            as="select"
+            name="difficulty"
+            value={problem.difficulty}
+            onChange={handleInputChange}
+            required
+          >
+            <option value="">Select Difficulty</option>
+            <option value="Easy">Easy</option>
+            <option value="Medium">Medium</option>
+            <option value="Hard">Hard</option>
+          </Form.Control>
+        </Form.Group>
+
+        <Form.Group controlId="problemTags">
+          <Form.Label>Problem Tags</Form.Label>
+          <Form.Control
+            type="text"
+            name="tags"
+            value={problem.tags.join(', ')}
+            onChange={(e) => handleTagChange(e.target.value.split(', '))}
+          />
+        </Form.Group>
+
+        <Form.Group>
+          <Form.Label>Test Cases</Form.Label>
+          {problem.testCases.map((testCase, index) => (
+            <Row key={index}>
+              <Col md={5}>
+                <Form.Control
+                  type="text"
+                  placeholder="Input"
+                  value={testCase.input}
+                  onChange={(e) =>
+                    handleTestCaseChange(index, 'input', e.target.value)
+                  }
+                  required
+                />
+              </Col>
+              <Col md={5}>
+                <Form.Control
+                  type="text"
+                  placeholder="Expected Output"
+                  value={testCase.output}
+                  onChange={(e) =>
+                    handleTestCaseChange(index, 'output', e.target.value)
+                  }
+                  required
+                />
+              </Col>
+              <Col md={2}>
+                <Button
+                  variant="danger"
+                  onClick={() => removeTestCase(index)}
+                >
+                  Remove
+                </Button>
+              </Col>
+            </Row>
+          ))}
+          <Button variant="secondary" onClick={addTestCase} className="mt-3">
+            Add Test Case
+          </Button>
+        </Form.Group>
+
+        <Button variant="primary" type="submit" className="mt-3">
+          Submit
+        </Button>
+      </Form>
+    </Container>
   );
 };
 

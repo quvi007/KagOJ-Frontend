@@ -33,6 +33,8 @@ import AssignmentCreate, { loader as assignmentCreateLoader, action as assignmen
 import { action as assignmentDeleteAction } from './routes/assignmentDelete';
 import MemberList from './routes/memberList';
 import AddNewStudent from './routes/addNewStudent';
+import CreateProblem from './routes/CreateProblem';
+import SubmitAssignment from './routes/submitAssigmnet';
 
 
 const router = createBrowserRouter([
@@ -167,6 +169,18 @@ const router = createBrowserRouter([
   {
     path: "/add-new-member",
     element: <AddNewStudent />,
+    errorElement: <ErrorPage/>,
+    // loader: semestersRootLoader,
+  },
+  {
+    path: "/create-problem",
+    element: <CreateProblem />,
+    errorElement: <ErrorPage/>,
+    // loader: semestersRootLoader,
+  },
+  {
+    path: "/submit-assignment",
+    element: <SubmitAssignment />,
     errorElement: <ErrorPage/>,
     // loader: semestersRootLoader,
   }
