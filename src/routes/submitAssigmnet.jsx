@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../css/submitAssignment.css';
 
-const SubmitAssignmentForm =({ assignmentData, onSubmit }) => {
+const SubmitAssignmentForm = ({ assignmentData, onSubmit }) => {
   const [attachmentFile, setAttachmentFile] = useState(assignmentData.attachment);
   const [remainingTime, setRemainingTime] = useState(getRemainingTime());
 

@@ -35,6 +35,7 @@ import MemberList from './routes/memberList';
 import AddNewStudent from './routes/addNewStudent';
 import CreateProblem from './routes/CreateProblem';
 import SubmitAssignment from './routes/submitAssigmnet';
+import CreateAssignment from './routes/createAssignment';
 
 
 const router = createBrowserRouter([
@@ -160,6 +161,7 @@ const router = createBrowserRouter([
       }
     ]
   }, 
+  //dummy paths - for pages that are not integrated yet
   {
     path: "/members",
     element: <MemberList />,
@@ -181,6 +183,12 @@ const router = createBrowserRouter([
   {
     path: "/submit-assignment",
     element: <SubmitAssignment />,
+    errorElement: <ErrorPage/>,
+    // loader: semestersRootLoader,
+  },
+  {
+    path: "/create-assignment",
+    element: <CreateAssignment />,
     errorElement: <ErrorPage/>,
     // loader: semestersRootLoader,
   }
