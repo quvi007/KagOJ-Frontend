@@ -31,6 +31,7 @@ import Assignment, { loader as assignmentLoader } from './routes/assignment';
 import AssignmentEdit, { loader as assignmentEditLoader, action as assignmentEditAction } from './routes/assignmentEdit';
 import AssignmentCreate, { loader as assignmentCreateLoader, action as assignmentCreateAction } from './routes/assignmentCreate';
 import { action as assignmentDeleteAction } from './routes/assignmentDelete';
+import MemberList from './routes/memberList';
 
 
 const router = createBrowserRouter([
@@ -155,6 +156,12 @@ const router = createBrowserRouter([
         action: assignmentDeleteAction
       }
     ]
+  }, 
+  {
+    path: "/members",
+    element: <MemberList />,
+    errorElement: <ErrorPage/>,
+    // loader: semestersRootLoader,
   }
 ]);
 
