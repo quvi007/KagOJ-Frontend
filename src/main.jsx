@@ -32,6 +32,7 @@ import AssignmentEdit, { loader as assignmentEditLoader, action as assignmentEdi
 import AssignmentCreate, { loader as assignmentCreateLoader, action as assignmentCreateAction } from './routes/assignmentCreate';
 import { action as assignmentDeleteAction } from './routes/assignmentDelete';
 import MemberList from './routes/memberList';
+import AddNewStudent from './routes/addNewStudent';
 
 
 const router = createBrowserRouter([
@@ -160,6 +161,12 @@ const router = createBrowserRouter([
   {
     path: "/members",
     element: <MemberList />,
+    errorElement: <ErrorPage/>,
+    // loader: semestersRootLoader,
+  },
+  {
+    path: "/add-new-member",
+    element: <AddNewStudent />,
     errorElement: <ErrorPage/>,
     // loader: semestersRootLoader,
   }
