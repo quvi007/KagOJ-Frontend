@@ -10,7 +10,7 @@ export default function PracticeProblems() {
   const [practiceProblems, setPracticeProblems] = useState([
     {
       id: 1,
-      title: 'Problem 1',
+      title: 'Problem 1huoiihihigh9g9b9g98h0uhoiphu98hu1huoiihihigh9g',
       difficulty: 1000,
     },
     {
@@ -52,7 +52,7 @@ export default function PracticeProblems() {
   return (
     <>
         <div className="available-assignments-container">
-        <h1>Practice Problems</h1>
+        <h1 >Practice Problems</h1>
         <button onClick={handleSortByDifficuty}>
             Sort by Difficulty ({sortOrder === 'asc' ? 'Asc' : 'Desc'})
         </button>
