@@ -36,6 +36,7 @@ import AddNewStudent from './routes/addNewStudent';
 import CreateProblem from './routes/CreateProblem';
 import SubmitAssignment from './routes/submitAssigmnet';
 import CreateAssignment from './routes/createAssignment';
+import PracticeProblems from './routes/practiceProblems';
 
 
 const router = createBrowserRouter([
@@ -189,6 +190,12 @@ const router = createBrowserRouter([
   {
     path: "/create-assignment",
     element: <CreateAssignment />,
+    errorElement: <ErrorPage/>,
+    // loader: semestersRootLoader,
+  },
+  {
+    path: "/practice-problems",
+    element: <PracticeProblems />,
     errorElement: <ErrorPage/>,
     // loader: semestersRootLoader,
   }
