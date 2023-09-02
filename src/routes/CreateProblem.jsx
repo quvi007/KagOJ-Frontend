@@ -9,6 +9,8 @@ const CreateProblem = () => {
     outputDescription: '',
     difficulty: '',
     tags: [],
+    time_limit: '',
+    memory_limit: '',
     testCases: [{ input: '', output: '' }],
   });
 
@@ -123,6 +125,28 @@ const CreateProblem = () => {
             name="tags"
             value={problem.tags.join(', ')}
             onChange={(e) => handleTagChange(e.target.value.split(', '))}
+          />
+        </Form.Group>
+
+        <Form.Group controlId="problemTimeLimit">
+          <Form.Label>Time Limit (ms)</Form.Label>
+          <Form.Control
+            type="text"
+            name="time_limit"
+            value={problem.time_limit}
+            onChange={handleInputChange}
+            required
+          />
+        </Form.Group>
+
+        <Form.Group controlId="problemMemoryLimit">
+          <Form.Label>Memory Limit (MB)</Form.Label>
+          <Form.Control
+            type="text"
+            name="memory_limit"
+            value={problem.memory_limit}
+            onChange={handleInputChange}
+            required
           />
         </Form.Group>
 

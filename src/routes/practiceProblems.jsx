@@ -10,7 +10,7 @@ export default function PracticeProblems() {
   const [practiceProblems, setPracticeProblems] = useState([
     {
       id: 1,
-      title: 'Problem 1huoiihihigh9g9b9g98h0uhoiphu98hu1huoiihihigh9g',
+      title: 'Problem 1',
       difficulty: 1000,
     },
     {
